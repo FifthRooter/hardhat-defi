@@ -1,4 +1,4 @@
-const { getNamedAccounts } = require("hardhat")
+const { getNamedAccounts, ethers } = require("hardhat")
 
 const AMOUNT = ethers.utils.parseEther("0.02")
 
@@ -19,4 +19,4 @@ async function getWeth() {
     console.log(`WETH balance: ${wethBalance} WETH`)
 }
 
-module.exports = { getWeth }
+module.exports = { getWeth, AMOUNT }
