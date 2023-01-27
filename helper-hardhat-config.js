@@ -6,6 +6,8 @@ const networkConfig = {
             "0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5",
         daiEthPriceFeed: "0x773616E4d11A78F511299002da57A0a94577F1f4",
         daiToken: "0x6b175474e89094c44da98b954eedeac495271d0f",
+        swapRouter: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+        poolFee: "3000",
     },
     // Due to the changing testnets, this testnet might not work as shown in the video
     5: {
@@ -19,6 +21,8 @@ const networkConfig = {
         daiEthPriceFeed: "0xb4c4a493AB6356497713A78FFA6c60FB53517c63",
         // This is the LINK token
         daiToken: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
+        swapRouter: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+        poolFee: "3000",
     },
 }
 
