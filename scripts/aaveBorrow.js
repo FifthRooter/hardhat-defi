@@ -3,6 +3,7 @@ const { getNamedAccounts, ethers, network } = require("hardhat")
 const { networkConfig } = require("../helper-hardhat-config")
 
 const wethTokenAddress = networkConfig[network.config.chainId].wethToken
+const daiTokenAddress = networkConfig[network.config.chainId].daiToken
 
 async function main() {
     // exchange ETH for WETH
@@ -34,12 +35,22 @@ async function main() {
     )
 
     await borrowDai(
-        networkConfig[network.config.chainId].daiToken,
+        daiTokenAddress,
         lendingPool,
         amountDaiToBorrowWei,
         deployer
     )
     await getBorrowUserData(lendingPool, deployer)
+    await repay(amountDaiToBorrowWei, daiTokenAddress, lendingPool, deployer)
+    await getBorrowUserData(lendingPool, deployer)
+}
+
+async function repay(amount, daiAddress, lendingPool, account) {
+    // approve sending DAI back first
+    await approveErc20(daiAddress, lendingPool.address, amount, account)
+    const repayTx = await lendingPool.repay(daiAddress, amount, 1, account)
+    await repayTx.wait(1)
+    console.log("Repaid!")
 }
 
 async function borrowDai(
